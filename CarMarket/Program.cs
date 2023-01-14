@@ -1,10 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
+
 namespace CarMarket
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+            SetEncoding();
             Client client = MarketLogger.ClientEnterOrRegistate();
             while (true)
             {
@@ -25,6 +28,11 @@ namespace CarMarket
                     }
                 }
             }
+        }
+        private static void SetEncoding()
+        {
+            Console.OutputEncoding = System.Text.Encoding.Unicode;
+            Console.InputEncoding = System.Text.Encoding.Unicode;
         }
     }
 }
