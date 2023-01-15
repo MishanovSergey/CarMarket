@@ -9,7 +9,7 @@ namespace CarMarket
 {
     public static class MarketLogger
     {
-        public static Client ClientEnterOrRegistate()
+        public static Client EnterOrRegistateClient()
         {
             while (true)
             {
@@ -22,7 +22,6 @@ namespace CarMarket
                     Console.WriteLine("Выберите вход или регистрацию! Нажмите \"Enter\", чтобы попробовать снова.");
                     Console.ReadLine();
                 }
-
                 if (enterResult == "вход")
                 {
                     Client? client = Market.Enter();
@@ -37,6 +36,7 @@ namespace CarMarket
                 }
             }
         }
+
         public static Brand SelectBrand()
         {
             using (ApplicationContext garage = new())

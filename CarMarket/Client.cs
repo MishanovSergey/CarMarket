@@ -15,7 +15,7 @@ namespace CarMarket
         public string Password { get; set; }
         public decimal MoneyAccount { get; set; }
 
-        public void AccoutTop_up(Car car, Client client)
+        public void TopUpAccout(Car car, Client client)
         {
             while (true)
             {
@@ -65,7 +65,7 @@ namespace CarMarket
                     {
                         Console.WriteLine("На вашем счёте недостаточно средств для оплаты. Нажмите \"Enter\", чтобы пополнить его!");
                         Console.ReadLine();
-                        AccoutTop_up(car, client);
+                        TopUpAccout(car, client);
                     }
                     else
                     {
@@ -76,7 +76,7 @@ namespace CarMarket
                         garage.SaveChanges();
                         Console.Clear();
                         Console.WriteLine($"{DateTime.Now}\t|| Оплата прошла успешно! состояние вашего счета: {client.MoneyAccount}р. ||\n\n" +
-                            $"От всего сердца поздравляем вас с приобретением этого замечательного автомобиля! Все ваши документы аккуратно сложены в бардачке, " +
+                            $"От всего сердца поздравляем с приобретением этого замечательного автомобиля! Все ваши документы аккуратно сложены в бардачке, " +
                             $"а сам автомобиль ожидает вас на парковке перед дилерским центром. Держите ваши ключи и помните, что мы всегда будем рады видеть вас снова!" +
                             $"\nДоброго пути!");
                         return;

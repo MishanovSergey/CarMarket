@@ -49,13 +49,13 @@ namespace CarMarket
             while (true)
             {
                 bool isLogin = false;
-                string name = ClientDataCreate(nameRegistrateMessage, nameError, isLogin);
+                string name = CreateClientData(nameRegistrateMessage, nameError, isLogin);
                 if (name.ToLower() == "назад")
                     return null;
-                string login = ClientDataCreate(loginRegistrateMessage, loginError, isLogin = true);
+                string login = CreateClientData(loginRegistrateMessage, loginError, isLogin = true);
                 if (login.ToLower() == "назад")
                     return null;
-                string password = ClientDataCreate(passwordRegistrateMessage, passwordError, isLogin = false);
+                string password = CreateClientData(passwordRegistrateMessage, passwordError, isLogin = false);
                 if (password.ToLower() == "назад")
                     return null;
                 using (ApplicationContext garage = new())
@@ -69,7 +69,7 @@ namespace CarMarket
                 }
             }
         }
-        public static string ClientDataCreate(string message, string error, bool isLogin)
+        public static string CreateClientData(string message, string error, bool isLogin)
         {
             Console.Clear();
             Console.WriteLine(message);
@@ -100,20 +100,22 @@ namespace CarMarket
                 }
             }
         }
-        public static void PrintMainMenu()
+        public static List<Brand> BuildBrandsList()
         {
             using (ApplicationContext garage = new())
             {
+                return (from brand in garage.Brands
+                        select brand).ToList();
+            }
+        }
+        public static void PrintMainMenu(List<Brand> brands)
+        {
                 Console.Clear();
-                var brands = from brand in garage.Brands
-                             orderby brand.Id
-                             select brand;
                 Console.WriteLine("$$$$$$$$$$$$$$$ |!|!| Магазин авто Twisted Metall: Fury Road |!|!| $$$$$$$$$$$$$$$\n\n\nНиже представленны доступные бренды автомобилей:");
                 foreach (Brand b in brands)
                 {
                     Console.WriteLine($"\n||{b.Name}||");
                 }
-            }
         }
         public static List<Model> BuildModelsList(Brand brand)
         {
@@ -124,6 +126,7 @@ namespace CarMarket
                         select model).ToList();
             }
         }
+        
         public static void PrintModelMenu(Brand brand, List<Model> models)
         {
             Console.Clear();

@@ -8,10 +8,11 @@ namespace CarMarket
         static void Main(string[] args)
         {
             SetEncoding();
-            Client client = MarketLogger.ClientEnterOrRegistate();
+            Client client = MarketLogger.EnterOrRegistateClient();
             while (true)
             {
-                Market.PrintMainMenu();
+                List<Brand> brands = Market.BuildBrandsList();
+                Market.PrintMainMenu(brands);
                 Brand brand = MarketLogger.SelectBrand();
                 List<Model> models = Market.BuildModelsList(brand);
                 Market.PrintModelMenu(brand, models);

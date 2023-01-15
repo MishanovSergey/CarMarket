@@ -13,7 +13,7 @@ namespace CarMarket
         public int ModelId { get; set; }
         public string VIN { get; set; }
         public string TypeOfEngine { get; set; }
-        public string EngineCapacity { get; set; }
+        public decimal EngineCapacity { get; set; }
         public string Transmission { get; set; }
         public string Color { get; set; }
         public decimal Price { get; set; }
